@@ -17,21 +17,31 @@ const getUsers = () => {
     onMount(getUsers);
 </script>
 
-<button on:click={getUsers}></button>
-<h1>Admin board</h1>
+<h1>Admin Board</h1>
 
-
-{#each users as user }
-<div>  
-    <p>{user.username}</p>
-    <input type="text">
-    <p>{user.role}</p>
-    <button>Update</button>
-</div>
+<table>
+    <th>Username</th>
+    <th>Role</th>
+    {#each users as user }
+<tr>  
+    <td>{user.username}</td>
+    <td>{user.role}</td>
+</tr>
 {/each}
+</table>
+
+
 
 <style>
-    div {
-        background-color: grey;
+    table{
+        width:100%;
+        margin: 0 auto; 
+        border: 2px groove red;
+    }
+    td, tr, th{
+        text-align: left;
+        font-size: 1.5em;
+        line-height: 1.5em;
+        background-color: black;
     }
 </style>

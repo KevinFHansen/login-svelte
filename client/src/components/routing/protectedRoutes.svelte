@@ -1,15 +1,15 @@
 <script>
     import { Route } from "svelte-navigator";
 
-    import accessDenied from '../../pages/accesDenied.svelte';
-    import { token, role } from '../../store/globals.js';
+    import accessDenied from '../../pages/AccesDenied.svelte';
+    import { token } from '../../store/globals.js';
 
     export let path;
     
     export let component;
 
     $: isAuthenticated = $token;
-    $: whatRole = $role;
+    
 </script>
 
 {#if isAuthenticated}

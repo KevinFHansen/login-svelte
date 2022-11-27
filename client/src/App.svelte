@@ -1,20 +1,20 @@
 <script>
-  import logo from "../public/logo.png";
-  import {Router, Link, Route, navigate} from "svelte-navigator";
-  import Login from "./pages/login.svelte";
-  import Signup from "./pages/signup.svelte";
-  import Footer from "./components/footer/footer.svelte";
-  import ProtectedRoute from "./components/routing/protectedRoutes.svelte";
-  import Home from "./pages/home.svelte";
-  import HomeAdmin from "./pages/homeAdmin.svelte";
-  import adainBoard from "./pages/homeAdmin.svelte";
-    import AdminBoard from "./pages/adminBoard.svelte";
-    import ProtectedRoutes from "./components/routing/protectedRoutes.svelte";
-    import { role } from './store/globals.js';
-    import AccesDenied from "./pages/accesDenied.svelte";
-    import UserDenied from "./pages/userDenied.svelte";
-  import logout from "./components/logOut.svelte"
-    import LogOut from "./components/logOut.svelte";
+  import {Router, Route} from "svelte-navigator";
+  import Login from "./pages/Login.svelte";
+  import Signup from "./pages/Signup.svelte";
+  import ProtectedRoute from "./components/routing/ProtectedRoutes.svelte";
+  import AdminBoard from "./pages/AdminBoard.svelte";
+  import { role } from './store/globals.js';
+  import AccesDenied from "./pages/AccesDenied.svelte";
+  import UserDenied from "./pages/UserDenied.svelte";
+  import LogOut from "./components/LogOut.svelte";
+  import Calendar from "./pages/Calendar.svelte";
+  import Gallery from "./pages/Gallery.svelte";
+    import Contact from "./pages/Contact.svelte";
+    import Frontpage from "./pages/Frontpage.svelte";
+    import Tickets from "./pages/Tickets.svelte";
+    import AdminFrontPage from "./pages/AdminFrontPage.svelte";
+    import LogginIn from "./components/LogginIn.svelte";
  
   // let p = "";
   // export const getSession = async () => {
@@ -36,112 +36,54 @@
 console.log(localStorage)
 
 $: whatRole = $role;
-
-
-
 </script>
 
 <Router>
 {#if whatRole == "user"}
-<a href="/calender">View Calender</a>
-<a href="/tickets">Find Tickets</a>
-<a href="/gallery">Gallery</a>
-<a href="/contact">Contact</a>
-<LogOut></LogOut>
-<ProtectedRoute path="/" component={AdminBoard} />
-<ProtectedRoute path="/frontpage" component={AdminBoard} />
-<ProtectedRoute path="/tickets" component={AdminBoard} />
+<nav>
+  <a href="/calender">View Calender</a>
+  <a href="/tickets">Find Tickets</a>
+  <a href="/gallery">Gallery</a>
+  <a href="/contact">Contact</a>
+  <LogOut></LogOut>
+</nav>
+<Route path="/dashboard" component={LogginIn} />
+<ProtectedRoute path="/" component={Frontpage} />
+<ProtectedRoute path="/gallery" component={Gallery} />
+<ProtectedRoute path="/contact" component={Contact} />
+<ProtectedRoute path="/calender" component={Calendar} />
+<ProtectedRoute path="/frontpage" component={Frontpage} />
+<ProtectedRoute path="/tickets" component={Tickets} />
 <ProtectedRoute path="*" component={UserDenied} />
 
 {:else if whatRole == "admin"}
-<a href="/updateadmin">Admins</a>
-<a href="/users">Users</a>
-<LogOut></LogOut>
+<nav>
+  <a href="/updateadmin">Users</a>
+  <LogOut></LogOut>
+</nav>
+<Route path="/dashboard" component={LogginIn} />
 <ProtectedRoute path="/updateadmin" component={AdminBoard} />
-<ProtectedRoute path="/frontpage" component={AdminBoard} />
-<ProtectedRoute path="/dashboard" component={HomeAdmin} />
+<ProtectedRoute path="/" component={AdminFrontPage} />
 
 {:else}
 
 <Route path="/" component={Login} />
+<Route path="/login" component={LogginIn} />
 <Route path="/signup" component={Signup} />
 <ProtectedRoute path="*" component={AccesDenied} />
 {/if}
 </Router>
 
 
-<!-- <Router>
-{#if whatRole == "admin"}
-<nav>
-  <Link to="/calender">Calender</Link>
-  <Link to="/presse">Presse</Link>
-  <Link to="/diskografi">Diskografi</Link>
-  <Link to="/shop">Shop</Link>
-  <Link to="/login">Login</Link>
-</nav>
-
-{:else if whatRole == "user"}
-
-<nav>
-<Link to="/calender">Calender</Link>
-<Link to="/wererterter">Presse</Link>
-<Link to="/diskografi">Diskografi</Link>
-<Link to="/shop">Shop</Link>
-<Link to="/login">Login</Link>
-</nav>
-
-
-{:else}
-
-<Link to="/login"></Link>
-
-{/if}
-</Router> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <Router>
-  
-  <nav>
-    
-    <Link to="/" id="homeid" on:click={getSession} >Home</Link>
-    <Link to="/calender">Calender</Link>
-    <Link to="/presse">Presse</Link>
-    <Link to="/diskografi">Diskografi</Link>
-    <Link to="/shop">Shop</Link>
-    <Link to="/login">Login</Link>
-  </nav>
-  <div>
-      <Route path="/"></Route>
-      <Route path="/login"><Login /></Route>
-      <Route path="/signup"><Signup /></Route>
-  </div>
-</Router> -->
-
-
 
 <style>
-  
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-  }
- 
   nav {
+    margin: 0 auto;
+    display:flex;
+    width:800px;
+    border: red 2px solid;
+    justify-content: space-evenly;
     background-color: black;
+    animation: breath 5s infinite alternate;
   }
 </style>

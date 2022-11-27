@@ -30,7 +30,7 @@
               toastr["success"]("Welcome " + result.user.username)
               setTimeout(() => {
                 location.reload();
-                navigate('/dashboard', { replace: true });
+                navigate('/', { replace: true });
                 
               }, 3000)
               
@@ -39,7 +39,7 @@
             toastr["success"]("Welcome " + result.user.username)
             setTimeout(() => {
                 location.reload();
-                navigate('/frontpage', { replace: true });
+                navigate('/', { replace: true });
               }, 3000)
       
             }
@@ -69,8 +69,6 @@
       <input type="password" placeholder="Enter Password" name="psw" required bind:value="{password}">
   
       <button type="submit" id="postlogin">Login</button>
-    
-      <a href="/forgotpassword">Forgot password? Click here</a>
       <br>
       <Link to="/signup">Sign Up - Click here</Link>
     </div>
@@ -82,12 +80,12 @@
 form {
   border: 3px solid #f1f1f1;
   margin-top: 5%;
-  width: 550px;
+  width: 1000px;
  
 }
 
 /* Full-width inputs */
-input[type=text], input[type=email], input[type=password] {
+input[type=email], input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -112,12 +110,6 @@ button:hover {
   opacity: 0.8;
 }
 
-/* Extra style for the cancel button (red) */
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
 
 /* Center the avatar image inside this container */
 .imgcontainer {
@@ -136,22 +128,6 @@ img.avatar {
   padding: 16px;
 }
 
-/* The "Forgot password" text */
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-    display: block;
-    float: none;
-  }
-  .cancelbtn {
-    width: 100%;
-  }
-}
 
 
 

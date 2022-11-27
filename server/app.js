@@ -69,7 +69,7 @@ app.get("/api/users", async (req, res) =>{
 
 
 
-app.post("/login", async (req, res) => {
+app.post("/login", loginLimiter, async (req, res) => {
     console.log(req.sessionID)
     const email = req.body.email;
     const password = req.body.password;

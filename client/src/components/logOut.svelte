@@ -1,6 +1,7 @@
 <script>
 
 import { token } from "../store/globals.js"
+import { navigate } from "svelte-navigator";
 
 
 const logOut = () => {
@@ -14,11 +15,16 @@ const logOut = () => {
     .then(res => res.json())
     .then(res => {
     console.log(res)
-    })}
+    })
+    setTimeout(() => {
+                location.reload();
+                navigate('/', { replace: true });
+              }, 3000)
+}
 
 
 </script>
 
 <div>
-<a href="/" on:click={logOut}>Logout</a>
+<a  href="/" on:click={logOut}>Logout</a>
 </div>
